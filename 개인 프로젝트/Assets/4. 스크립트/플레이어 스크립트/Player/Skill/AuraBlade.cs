@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class AuraBlade : MonoBehaviour
 {
-    public Monster monster;
     private PlayerController playerController;
     private float movingSpeed = 20f;
     private float destroyTime = 1f;
@@ -42,7 +41,8 @@ public class AuraBlade : MonoBehaviour
     {
         if (other.GetComponent<IHitable>() != null)
         {
+            Debug.Log(other.gameObject.name + "맞음");
             other.GetComponent<Monster>().Hit(playerController.damage * 2);
-        }
+        }     
     }
 }
