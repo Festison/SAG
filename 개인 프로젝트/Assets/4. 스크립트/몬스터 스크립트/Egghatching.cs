@@ -18,6 +18,9 @@ public class Egghatching : MonoBehaviour, IHitable
     [SerializeField]
     private float maxhp = 30;
 
+    [Header("플레이어 위치")]
+    public Transform player;
+
     bool isDie = false;
     public float Hp
     {
@@ -54,8 +57,10 @@ public class Egghatching : MonoBehaviour, IHitable
     void Start()
     {
         monsterAnimation = GetComponent<Animator>();
+        player = GameObject.FindGameObjectWithTag("Player").transform;
         StartCoroutine(Hatch());
     }
+
 
     public void Die()
     {
@@ -67,8 +72,8 @@ public class Egghatching : MonoBehaviour, IHitable
 
     // 10초뒤에 부화하는 코드
     IEnumerator Hatch()
-    {
-        yield return new WaitForSeconds(10f);
+    {       
+        yield return new WaitForSeconds(30f);
         Instantiate(Spider, gameObject.transform.position, Quaternion.identity);
         Die();
     }
