@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class Berserker : PlayerController
 {
-    public GameObject monster;
     private void Start()
     {
         CapsulleCollider = this.transform.GetComponent<CapsuleCollider2D>();
@@ -220,8 +219,7 @@ public class Berserker : PlayerController
     {
         if (hitMonster.GetComponent<IHitable>() != null)
         {
-            Monster monster = hitMonster.transform.GetComponent<Monster>();
-            monster.Hit(damage);
+            hitMonster.transform.GetComponent<IHitable>().Hit(damage);
         }
     }
 
@@ -240,11 +238,9 @@ public class Berserker : PlayerController
         {
             if (hitMonster.GetComponent<IHitable>() != null)
             {
-                Debug.Log(monster.name);
-                GameObject lifeSteal = Instantiate(this.lifeStealPrefab, monster.transform.position, Quaternion.identity);
+                GameObject lifeSteal = Instantiate(this.lifeStealPrefab, hitMonster.transform.position, Quaternion.identity);
                 lifeSteal.GetComponent<LifeSteal>().Fire(5);
-                Monster monster_hp = monster.transform.GetComponent<Monster>();
-                monster_hp.GetComponent<Monster>().Hit(5f);
+                hitMonster.transform.GetComponent<IHitable>().Hit(5f);
             }
         }
     }
@@ -261,8 +257,7 @@ public class Berserker : PlayerController
     {
         if (hitMonster.GetComponent<IHitable>() != null)
         {
-            Monster monster = hitMonster.transform.GetComponent<Monster>();
-            monster.Hit(damage * 2);
+            hitMonster.transform.GetComponent<IHitable>().Hit(damage * 2);
         }
     }
 

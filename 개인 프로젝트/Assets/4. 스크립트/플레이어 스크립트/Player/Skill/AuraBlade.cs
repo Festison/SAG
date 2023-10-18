@@ -42,7 +42,7 @@ public class AuraBlade : MonoBehaviour
         if (other.GetComponent<IHitable>() != null)
         {
             Debug.Log(other.gameObject.name + "맞음");
-            other.GetComponent<Monster>().Hit(playerController.damage * 2);
+            other.GetComponent<IHitable>().Hit(playerController.damage *2);
         }     
     }
 }

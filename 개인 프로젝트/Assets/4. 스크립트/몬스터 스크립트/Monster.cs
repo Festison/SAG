@@ -3,19 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public interface IHitable
-{
-    // 데미지를 받는다.
-    public void Hit(float Damage);
-}
-
 public class Monster : MonoBehaviour,IHitable
 {
     [Header("몬스터 UI 셋팅")]
     public Transform m_Canvas_Trans;
     public Image HpBarImage;
 
-    private Animator monsterAnimation;
+    public Animator monsterAnimation;
     private SpriteRenderer spriteRenderer;
 
     [Header("플레이어 위치")]
@@ -36,7 +30,7 @@ public class Monster : MonoBehaviour,IHitable
     public float atkDelay;
 
     private bool isBackHome;
-    private float dir;
+    public float dir;
     [Header("몬스터가 되돌아갈 좌표")]
     public Vector2 home;
 
@@ -49,6 +43,7 @@ public class Monster : MonoBehaviour,IHitable
         set
         {
             isBackHome = value;
+
             if(isBackHome == false)
             {
                 dir = player.position.x - transform.position.x;
@@ -59,7 +54,7 @@ public class Monster : MonoBehaviour,IHitable
             }
         }
     }
-
+    bool isDie = false;
     public float Hp
     {
         get
@@ -68,14 +63,17 @@ public class Monster : MonoBehaviour,IHitable
         }
         set
         {
+            if (isDie)
+            {
+                return;
+            }
+                
             hp = value;
             HpBarImage.fillAmount = hp / maxhp;
 
             if (hp <= 0)
-            {             
-                monsterAnimation.SetTrigger("Die");
-                m_Canvas_Trans.gameObject.SetActive(false);
-                Destroy(gameObject, 2);
+            {
+                Die();
             }
         }
     }
@@ -107,6 +105,14 @@ public class Monster : MonoBehaviour,IHitable
         {
             
         }
+    }
+
+    public void Die()
+    {
+        isDie = true;
+        monsterAnimation.SetTrigger("Die");
+        m_Canvas_Trans.gameObject.SetActive(false);
+        Destroy(gameObject, 2);
     }
 
     // 공격 쿨타임
