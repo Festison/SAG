@@ -11,19 +11,19 @@ public class AttackState : StateMachineBehaviour
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         monster = animator.GetComponent<Monster>();
-        CircleCollider2D = monster.GetComponent<CircleCollider2D>();       
+        CircleCollider2D = monster.GetComponent<CircleCollider2D>();
+        CircleCollider2D.enabled = true;
     }
 
     // 상태가 진행 중일 때
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        CircleCollider2D.enabled = true;
+        CircleCollider2D.enabled = false;
     }
 
     // 상태에서 나갈 때
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        monster.atkDelay = monster.atkCooltime;
-        CircleCollider2D.enabled = false;
+        monster.atkDelay = monster.atkCooltime;             
     }
 }

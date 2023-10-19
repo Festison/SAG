@@ -62,12 +62,9 @@ public abstract class PlayerController : MonoBehaviour
             return hp;
         }
         set
-        {           
-            hpText.text = hp + " / " + maxHp;
-
+        {                     
             hp = value;
-
-            if (hp > maxHp)
+            if (hp >= maxHp)
             {
                 hp = maxHp;
             }

@@ -9,6 +9,7 @@ public class Egghatching : MonoBehaviour, IHitable
     public GameObject Spider;
     public Transform m_Canvas_Trans;
     public Image HpBarImage;
+    protected float lerpSpeed = 10;
 
     public Animator monsterAnimation;
 
@@ -36,7 +37,6 @@ public class Egghatching : MonoBehaviour, IHitable
             }
 
             hp = value;
-            HpBarImage.fillAmount = hp / maxhp;
 
             if (hp <= 0)
             {
@@ -61,6 +61,15 @@ public class Egghatching : MonoBehaviour, IHitable
         StartCoroutine(Hatch());
     }
 
+    private void Update()
+    {
+        HpLerp();
+    }
+
+    public void HpLerp()
+    {
+        HpBarImage.fillAmount = Mathf.Lerp(HpBarImage.fillAmount, Hp / maxhp, Time.deltaTime * lerpSpeed);
+    }
 
     public void Die()
     {

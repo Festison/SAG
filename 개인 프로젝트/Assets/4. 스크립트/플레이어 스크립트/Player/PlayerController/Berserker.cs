@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class Berserker : PlayerController
 {
-    Monster monster;
     private void Start()
     {
         CapsulleCollider = this.transform.GetComponent<CapsuleCollider2D>();
@@ -16,7 +15,7 @@ public class Berserker : PlayerController
     private void Update()
     {
         CheckInput();
-        HpLerp();
+        StatusLerp();
 
         if (rigidbody.velocity.magnitude > 30)
         {
@@ -24,8 +23,9 @@ public class Berserker : PlayerController
         }
     }
 
-    public void HpLerp()
+    public void StatusLerp()
     {
+        hpText.text = Hp + " / " + maxHp;
         HpBarImage.fillAmount = Mathf.Lerp(HpBarImage.fillAmount, Hp / maxHp, Time.deltaTime * lerpSpeed);
     }
 
