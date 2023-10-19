@@ -11,7 +11,7 @@ public class Egghatching : MonoBehaviour, IHitable
     public Image HpBarImage;
     protected float lerpSpeed = 10;
 
-    public Animator monsterAnimation;
+    private Animator monsterAnimation;
 
     [Header("몬스터 스테이터스")]
     [SerializeField]

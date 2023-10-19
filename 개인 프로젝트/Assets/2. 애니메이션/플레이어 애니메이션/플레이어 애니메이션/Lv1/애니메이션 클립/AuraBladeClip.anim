@@ -508,7 +508,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_IsActive
-    path: Skill_3_sub_1
+    path: AuraBlade
     classID: 1
     script: {fileID: 0}
   m_PPtrCurves: []
@@ -590,7 +590,7 @@ AnimationClip:
       customType: 4
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 2508823313
+      path: 1435523090
       attribute: 2086281974
       script: {fileID: 0}
       typeID: 1
@@ -2149,7 +2149,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_IsActive
-    path: Skill_3_sub_1
+    path: AuraBlade
     classID: 1
     script: {fileID: 0}
   m_EulerEditorCurves:

@@ -52,7 +52,7 @@ public abstract class PlayerController : MonoBehaviour
 
     protected float m_MoveX;
     protected CapsuleCollider2D CapsulleCollider;
-    protected Animator Anime;
+    public Animator Anime;
 
     // 프로퍼티
     public float Hp

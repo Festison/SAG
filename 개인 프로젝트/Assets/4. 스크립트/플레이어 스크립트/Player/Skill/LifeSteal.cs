@@ -25,8 +25,7 @@ public class LifeSteal : MonoBehaviour
         Damage = damage;
         TartgetObj = UIManager.UI.CurrentPlayerObj;
         TargetDir = TartgetObj.transform.position - this.transform.position;
-        this.transform.right = TargetDir;
-        
+        this.transform.right = TargetDir;      
     }
 
     void Update()
