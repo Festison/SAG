@@ -228,6 +228,7 @@ GameObject:
   - component: {fileID: 887540613753343033}
   - component: {fileID: 887540613753343032}
   - component: {fileID: 8485094811335304380}
+  - component: {fileID: 4710469054139249191}
   m_Layer: 0
   m_Name: Spider
   m_TagString: Monster
@@ -337,13 +338,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Canvas_Trans: {fileID: 887540613474421206}
   HpBarImage: {fileID: 887540613246060130}
+  monsterAnimation: {fileID: 0}
   player: {fileID: 0}
   speed: 2
   hp: 30
   maxhp: 30
   monsterDamage: 5
+  dropExp: 100
   atkCooltime: 1.2
   atkDelay: 0
+  dir: 0
   home: {x: 0, y: 0}
   BloodEffect: {fileID: 1377245740641916, guid: 9c347b62d6d81a8478425692b427f9d7, type: 3}
 --- !u!61 &8485094811335304380
@@ -372,6 +376,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.4018173, y: 0.9170778}
   m_EdgeRadius: 0
+--- !u!58 &4710469054139249191
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 887540613546662711}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.34374428, y: -0.11103976}
+  serializedVersion: 2
+  m_Radius: 0.27451515
 --- !u!1 &887540614061155375
 GameObject:
   m_ObjectHideFlags: 0

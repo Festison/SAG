@@ -25,7 +25,7 @@ public class RunState : StateMachineBehaviour
             animator.SetBool("IsFollow", false);
             animator.SetBool("IsBack", true);
         }
-        else if (Vector2.Distance(enemyTransform.position, enemy.player.position) > 1f)
+        else if (Vector2.Distance(enemyTransform.position, enemy.player.position) > 0.5f)
         {
             enemy.IsBackHome = false;
             enemyTransform.position = Vector2.MoveTowards(enemyTransform.transform.position, enemy.player.transform.position, Time.deltaTime * enemy.speed);

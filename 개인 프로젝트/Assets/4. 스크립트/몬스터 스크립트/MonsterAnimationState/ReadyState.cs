@@ -17,12 +17,12 @@ public class ReadyState : StateMachineBehaviour
     // 상태가 진행 중일 때
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if (enemy.atkDelay <= 0 && Vector2.Distance(enemy.player.transform.position, enemyTransform.position) < 1f)
+        if (enemy.atkDelay <= 0 && Vector2.Distance(enemy.player.transform.position, enemyTransform.position) < 0.5f)
         {
             animator.SetTrigger("Attack");
         }   
         
-        if (Vector2.Distance(enemy.player.position, enemyTransform.position) > 1.0f)
+        if (Vector2.Distance(enemy.player.position, enemyTransform.position) > 0.5f)
         {
             animator.SetBool("IsFollow", true);
         }

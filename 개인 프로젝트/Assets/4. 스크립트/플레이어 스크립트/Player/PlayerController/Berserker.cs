@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Berserker : PlayerController
 {
+    Monster monster;
     private void Start()
     {
         CapsulleCollider = this.transform.GetComponent<CapsuleCollider2D>();
@@ -15,11 +16,17 @@ public class Berserker : PlayerController
     private void Update()
     {
         CheckInput();
+        HpLerp();
 
         if (rigidbody.velocity.magnitude > 30)
         {
             rigidbody.velocity = new Vector2(rigidbody.velocity.x - 0.1f, rigidbody.velocity.y - 0.1f);
         }
+    }
+
+    public void HpLerp()
+    {
+        HpBarImage.fillAmount = Mathf.Lerp(HpBarImage.fillAmount, Hp / maxHp, Time.deltaTime * lerpSpeed);
     }
 
     public void CheckInput()
@@ -212,9 +219,9 @@ public class Berserker : PlayerController
 
     public override void Hit(float monsterDamage)
     {
-
-        // 피 달게 한다. 
+        Hp -= monsterDamage;
     }
+
     public override void DefaulAttack(GameObject hitMonster)
     {
         if (hitMonster.GetComponent<IHitable>() != null)
@@ -286,5 +293,15 @@ public class Berserker : PlayerController
     public override void DieEnter()
     {
         Instantiate(BloodPrefab, this.transform.localPosition, Quaternion.identity);
+    }
+
+    // 피격
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.GetComponent<Monster>() != null && collision is CircleCollider2D)
+        {
+            Debug.Log("몬스터 공격 맞음");
+            Hit(5);
+        }
     }
 }

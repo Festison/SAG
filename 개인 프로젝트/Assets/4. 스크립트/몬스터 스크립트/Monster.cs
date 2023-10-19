@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Monster : MonoBehaviour,IHitable
+public class Monster : MonoBehaviour, IHitable
 {
     [Header("몬스터 UI 셋팅")]
     public Transform m_Canvas_Trans;
     public Image HpBarImage;
 
     public Animator monsterAnimation;
-    private SpriteRenderer spriteRenderer;
 
     [Header("플레이어 위치")]
     public Transform player;
@@ -19,12 +18,13 @@ public class Monster : MonoBehaviour,IHitable
     [SerializeField]
     public float speed = 2f;
     [SerializeField]
-    private float hp=30;
+    private float hp = 30;
     [SerializeField]
     private float maxhp = 30;
     [SerializeField]
-    private int monsterDamage = 5;
- 
+    public int monsterDamage = 5;
+    public float dropExp = 100;
+
     [Header("몬스터 공격 쿨타임")]
     public float atkCooltime = 1.2f;
     public float atkDelay;
@@ -44,7 +44,7 @@ public class Monster : MonoBehaviour,IHitable
         {
             isBackHome = value;
 
-            if(isBackHome == false)
+            if (isBackHome == false)
             {
                 dir = player.position.x - transform.position.x;
             }
@@ -67,7 +67,7 @@ public class Monster : MonoBehaviour,IHitable
             {
                 return;
             }
-                
+
             hp = value;
             HpBarImage.fillAmount = hp / maxhp;
 
@@ -90,7 +90,6 @@ public class Monster : MonoBehaviour,IHitable
     void Start()
     {
         monsterAnimation = GetComponent<Animator>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
         home = transform.position;
         IsBackHome = false;
@@ -100,10 +99,10 @@ public class Monster : MonoBehaviour,IHitable
     {
         AttackCoolTime();
         Flip();
-     
+
         if (monsterAnimation.GetCurrentAnimatorStateInfo(0).IsName("SpiderAttack"))
         {
-            
+
         }
     }
 
@@ -129,11 +128,11 @@ public class Monster : MonoBehaviour,IHitable
     {
         if (dir < 0)
         {
-            spriteRenderer.flipX = true;
+            transform.localScale = new Vector3(-1, 1, 1);
         }
         else
         {
-            spriteRenderer.flipX = false;
+            transform.localScale = new Vector3(1, 1, 1);
         }
     }
 
@@ -145,6 +144,9 @@ public class Monster : MonoBehaviour,IHitable
         if (Damage > 0)
         {
             SetCreateBloodEffect(Damage);
-        }         
+        }
     }
+
+    
+
 }

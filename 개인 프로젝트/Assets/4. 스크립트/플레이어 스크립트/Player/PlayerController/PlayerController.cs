@@ -2,8 +2,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
-public abstract class PlayerController : MonoBehaviour, IHitable
+public abstract class PlayerController : MonoBehaviour
 {
     [Header("현재 점프한 횟수")]
     public int currentJumpCount = 0;
@@ -17,6 +19,12 @@ public abstract class PlayerController : MonoBehaviour, IHitable
     public bool IsDownJumpCheck = false;   // 다운 점프를 하는데 아래 블록인지 그라운드인지 알려주는 불값
 
     [Space(10)]
+    [Header("플레이어 UI")]
+    public Image HpBarImage;
+    public TextMeshProUGUI hpText;
+    protected float lerpSpeed=10;
+
+    [Space(10)]
     [Header("[스텟]")]
     [Range(0, 10)]
     public float MoveSpeed = 6;
@@ -24,6 +32,15 @@ public abstract class PlayerController : MonoBehaviour, IHitable
     public float jumpForce = 15f;
     [Range(0, 20)]
     public float damage = 10;
+    [SerializeField]
+    protected float maxHp=100;
+    [SerializeField]
+    private float hp=100;
+    private float maxMp=100;
+    private float mp=100;
+    private float maxExp=100;
+    private float exp=0;
+    private float level = 1;
 
     [Space(10)]
     [Header("플레이어 리지드바디")]
@@ -36,6 +53,76 @@ public abstract class PlayerController : MonoBehaviour, IHitable
     protected float m_MoveX;
     protected CapsuleCollider2D CapsulleCollider;
     protected Animator Anime;
+
+    // 프로퍼티
+    public float Hp
+    {
+        get
+        {
+            return hp;
+        }
+        set
+        {           
+            hpText.text = hp + " / " + maxHp;
+
+            hp = value;
+
+            if (hp > maxHp)
+            {
+                hp = maxHp;
+            }
+            else if (hp <= 0)
+            {
+                // 플레이어 죽음
+            }
+        }
+    }
+
+    public float Mp
+    {
+        get
+        {
+            return mp;
+        }
+        set
+        {
+            mp = value;
+
+            if (true)
+            {
+
+            }
+        }
+    }
+
+    public float Exp
+    {
+        get
+        {
+            return exp;
+        }
+        set
+        {
+            exp = value;
+        }
+    }
+
+    public float Level
+    {
+        get
+        {
+            return level;
+        }
+        set
+        {
+            level = value;
+
+            if (maxExp >= exp)
+            {
+                // 레벨업 기능
+            }
+        }
+    }
 
     // 좌우 반전 함수
     protected void Filp(bool bLeft)
