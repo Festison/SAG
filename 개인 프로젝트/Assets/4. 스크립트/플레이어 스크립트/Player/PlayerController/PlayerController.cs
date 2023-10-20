@@ -13,6 +13,7 @@ public abstract class PlayerController : MonoBehaviour
 
     [Space(10)]
     [Header("현재 플레이어 상태")]
+    public bool IsDie = false;
     public bool IsSit = false;
     public bool IsGrounded = false;
     public bool IsJumping = false;
@@ -22,7 +23,12 @@ public abstract class PlayerController : MonoBehaviour
     [Header("플레이어 UI")]
     public Image HpBarImage;
     public TextMeshProUGUI hpText;
-    protected float lerpSpeed=10;
+    public Image MpBarImage;
+    public TextMeshProUGUI mpText;
+    public Image ExpBarImage;
+    public TextMeshProUGUI expText;
+    public TextMeshProUGUI levelText;
+
 
     [Space(10)]
     [Header("[스텟]")]
@@ -33,13 +39,18 @@ public abstract class PlayerController : MonoBehaviour
     [Range(0, 20)]
     public float damage = 10;
     [SerializeField]
-    protected float maxHp=100;
+    protected float maxHp = 100;
     [SerializeField]
-    private float hp=100;
-    private float maxMp=100;
-    private float mp=100;
-    private float maxExp=100;
-    private float exp=0;
+    private float hp = 100;
+    [SerializeField]
+    protected float maxMp = 100;
+    [SerializeField]
+    private float mp = 100;
+    [SerializeField]
+    protected float maxExp = 100;
+    [SerializeField]
+    private float exp = 0;
+    [SerializeField]
     private float level = 1;
 
     [Space(10)]
@@ -50,9 +61,13 @@ public abstract class PlayerController : MonoBehaviour
     [Header("피격시 나올 이펙트")]
     public GameObject BloodPrefab;
 
-    protected float m_MoveX;
+    [Header("쿨타임")]
+    public float mpRecovery = 2;
+
+    protected float lerpSpeed = 10;
+    protected float moveX;
     protected CapsuleCollider2D CapsulleCollider;
-    public Animator Anime;
+    protected Animator Anime;
 
     // 프로퍼티
     public float Hp
@@ -62,7 +77,7 @@ public abstract class PlayerController : MonoBehaviour
             return hp;
         }
         set
-        {                     
+        {
             hp = value;
             if (hp >= maxHp)
             {
@@ -84,10 +99,13 @@ public abstract class PlayerController : MonoBehaviour
         set
         {
             mp = value;
-
-            if (true)
+            if (mp >= maxMp)
             {
-
+                mp = maxMp;
+            }
+            if (mp <= 0)
+            {
+                mp = 0;
             }
         }
     }
@@ -101,6 +119,11 @@ public abstract class PlayerController : MonoBehaviour
         set
         {
             exp = value;
+            if (exp >= maxExp)
+            {
+                exp = 0;
+                LevelUp();
+            }
         }
     }
 
@@ -114,11 +137,17 @@ public abstract class PlayerController : MonoBehaviour
         {
             level = value;
 
-            if (maxExp >= exp)
-            {
-                // 레벨업 기능
-            }
         }
+    }
+
+    public void LevelUp()
+    {
+        Level++;
+        maxHp += 20;
+        Hp += 20;
+        maxMp += 20;
+        Mp += 20;
+        maxExp += 50;
     }
 
     // 좌우 반전 함수

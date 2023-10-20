@@ -229,6 +229,7 @@ GameObject:
   - component: {fileID: 887540613753343032}
   - component: {fileID: 8485094811335304380}
   - component: {fileID: 4710469054139249191}
+  - component: {fileID: 5443160699695077181}
   m_Layer: 0
   m_Name: Spider
   m_TagString: Monster
@@ -389,9 +390,24 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.34374428, y: -0.11103976}
+  m_Offset: {x: 0.36832762, y: 0.024148464}
   serializedVersion: 2
-  m_Radius: 0.27451515
+  m_Radius: 0.20077467
+--- !u!114 &5443160699695077181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 887540613546662711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3fd7c9acb775fc4889da7e879ce2030, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxDistance: 0.8
+  animator: {fileID: 0}
+  isGround: 0
 --- !u!1 &887540614061155375
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,6 +6,7 @@ public class BoxBreak : MonoBehaviour, IHitable
 {
     [SerializeField]
     private float hp = 10;
+    private int dropCoinCount;
     public GameObject Coin;
     public Animator boxAnimation;
 
@@ -36,18 +37,24 @@ public class BoxBreak : MonoBehaviour, IHitable
     private void Start()
     {
         boxAnimation = GetComponent<Animator>();
+        dropCoinCount = Random.Range(2, 8);
     }
 
     public void Break()
     {
         isBreak = true;
-        boxAnimation.SetTrigger("Break");
-        Instantiate(Coin, transform.position + Vector3.down / 3, Quaternion.identity);
+        boxAnimation.SetTrigger("Break");       
         Destroy(gameObject, 2);
+
+        for (int i = 0; i < dropCoinCount; i++)
+        {
+            Instantiate(Coin, transform.position + Vector3.down / 3, Quaternion.identity);
+        }
     }
 
     public void Hit(float Damage)
     {
         Hp -= Damage;
+        boxAnimation.SetTrigger("Hit");
     }  
 }

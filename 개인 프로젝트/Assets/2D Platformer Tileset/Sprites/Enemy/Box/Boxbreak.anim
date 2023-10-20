@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Boxbreak
+  m_Name: BoxBreak
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -20,7 +20,7 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 21300000, guid: dcea27f8885acb849b21f15db6cecd9d, type: 3}
+      value: {fileID: 21300000, guid: b645ecebdc4770648bfe974da7998c79, type: 3}
     - time: 0.083333336
       value: {fileID: 21300000, guid: 71755dcea5d8abe4fa19e5b24b0c48df, type: 3}
     - time: 0.16666667
@@ -56,7 +56,7 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 21300000, guid: dcea27f8885acb849b21f15db6cecd9d, type: 3}
+    - {fileID: 21300000, guid: b645ecebdc4770648bfe974da7998c79, type: 3}
     - {fileID: 21300000, guid: 71755dcea5d8abe4fa19e5b24b0c48df, type: 3}
     - {fileID: 21300000, guid: afc675c12a3ad7d4eb8245f95f53fb44, type: 3}
     - {fileID: 21300000, guid: 547029aad6c4446449a177461892149d, type: 3}
@@ -75,7 +75,7 @@ AnimationClip:
     m_Level: 0
     m_CycleOffset: 0
     m_HasAdditiveReferencePose: 0
-    m_LoopTime: 0
+    m_LoopTime: 1
     m_LoopBlend: 0
     m_LoopBlendOrientation: 0
     m_LoopBlendPositionY: 0

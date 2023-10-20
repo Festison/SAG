@@ -10,6 +10,8 @@ public class Berserker : PlayerController
         CapsulleCollider = this.transform.GetComponent<CapsuleCollider2D>();
         Anime = this.transform.Find("model").GetComponent<Animator>();
         rigidbody = this.transform.GetComponent<Rigidbody2D>();
+
+        StartCoroutine(MpRecovery());
     }
 
     private void Update()
@@ -27,19 +29,24 @@ public class Berserker : PlayerController
     {
         hpText.text = Hp + " / " + maxHp;
         HpBarImage.fillAmount = Mathf.Lerp(HpBarImage.fillAmount, Hp / maxHp, Time.deltaTime * lerpSpeed);
+        mpText.text = Mp + " / " + maxMp;
+        MpBarImage.fillAmount = Mathf.Lerp(MpBarImage.fillAmount, Mp / maxMp, Time.deltaTime * lerpSpeed);
+        expText.text = Exp + " / " + maxExp;
+        ExpBarImage.fillAmount = Mathf.Lerp(ExpBarImage.fillAmount, Exp / maxExp, Time.deltaTime * lerpSpeed);
+        levelText.text = "Lv. " + Level;
     }
 
     public void CheckInput()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (Input.GetKeyDown(KeyCode.Alpha1) && Mp >= 10)
         {
             Anime.Play("LifeSteal");
         }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
+        if (Input.GetKeyDown(KeyCode.Alpha2) && Mp >= 10)
         {
             Anime.Play("Rush");
         }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
+        if (Input.GetKeyDown(KeyCode.Alpha3) && Mp >= 10)
         {
             Anime.Play("AuraBlade");
         }
@@ -56,18 +63,18 @@ public class Berserker : PlayerController
             }
             else
             {
-                if (m_MoveX < 0)
+                if (moveX < 0)
                 {
                     if (transform.localScale.x > 0)
                     {
-                        transform.transform.Translate(new Vector3(m_MoveX * MoveSpeed * Time.deltaTime, 0, 0));
+                        transform.transform.Translate(new Vector3(moveX * MoveSpeed * Time.deltaTime, 0, 0));
                     }
                 }
-                else if (m_MoveX > 0)
+                else if (moveX > 0)
                 {
                     if (transform.localScale.x < 0)
                     {
-                        transform.transform.Translate(new Vector3(m_MoveX * MoveSpeed * Time.deltaTime, 0, 0));
+                        transform.transform.Translate(new Vector3(moveX * MoveSpeed * Time.deltaTime, 0, 0));
                     }
                 }
             }
@@ -110,7 +117,7 @@ public class Berserker : PlayerController
             return;
         }
 
-        m_MoveX = Input.GetAxis("Horizontal");
+        moveX = Input.GetAxis("Horizontal");
 
         // 공격 상태가 아닐 때
         if (!Anime.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
@@ -121,7 +128,7 @@ public class Berserker : PlayerController
             }
             else
             {
-                if (m_MoveX == 0)
+                if (moveX == 0)
                 {
                     if (!IsJumping)
                     {
@@ -145,11 +152,11 @@ public class Berserker : PlayerController
                     return;
                 }
 
-                transform.transform.Translate(Vector2.right * m_MoveX * MoveSpeed * Time.deltaTime);
+                transform.Translate(Vector2.right * moveX * MoveSpeed * Time.deltaTime);
             }
             else
             {
-                transform.transform.Translate(new Vector3(m_MoveX * MoveSpeed * Time.deltaTime, 0, 0));
+                transform.Translate(new Vector3(moveX * MoveSpeed * Time.deltaTime, 0, 0));
             }
             if (Anime.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
             {
@@ -171,11 +178,11 @@ public class Berserker : PlayerController
                     return;
                 }
 
-                transform.transform.Translate(Vector2.right * m_MoveX * MoveSpeed * Time.deltaTime);
+                transform.transform.Translate(Vector2.right * moveX * MoveSpeed * Time.deltaTime);
             }
             else
             {
-                transform.transform.Translate(new Vector3(m_MoveX * MoveSpeed * Time.deltaTime, 0, 0));
+                transform.transform.Translate(new Vector3(moveX * MoveSpeed * Time.deltaTime, 0, 0));
             }
             if (Anime.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
             {
@@ -220,6 +227,18 @@ public class Berserker : PlayerController
     public override void Hit(float monsterDamage)
     {
         Hp -= monsterDamage;
+
+        if (monsterDamage > 0)
+        {
+            SetCreateBloodEffect(monsterDamage);
+        }
+    }
+
+    public void SetCreateBloodEffect(float Damage)
+    {
+        Instantiate(BloodPrefab, transform.position, Quaternion.identity);
+
+        float RandomX = UnityEngine.Random.Range(0, 0.5f);
     }
 
     public override void DefaulAttack(GameObject hitMonster)
@@ -237,10 +256,13 @@ public class Berserker : PlayerController
     public GameObject auraBladePrefab;
 
     // 드레인 기술
+
     public override void LifeStealEnter()
     {
-        Collider2D[] cols = Physics2D.OverlapCircleAll(transform.position, 5f);
+        Mp -= 10;
+        const int hpRecorvery = 1;
 
+        Collider2D[] cols = Physics2D.OverlapCircleAll(transform.position, 5f);
         foreach (var hitMonster in cols)
         {
             if (hitMonster.GetComponent<IHitable>() != null)
@@ -248,6 +270,7 @@ public class Berserker : PlayerController
                 GameObject lifeSteal = Instantiate(this.lifeStealPrefab, hitMonster.transform.position, Quaternion.identity);
                 lifeSteal.GetComponent<LifeSteal>().Fire(5);
                 hitMonster.transform.GetComponent<IHitable>().Hit(5f);
+                Hp += hpRecorvery * hitMonster.shapeCount;
             }
         }
     }
@@ -270,6 +293,7 @@ public class Berserker : PlayerController
 
     public override void RushEnter()
     {
+        Mp -= 10;
         IsRushState = true;
         GameObject rush = Instantiate(rushPrefab, transform.position, Quaternion.identity);
         rush.transform.localScale = new Vector3(-1 * transform.localScale.x, 1, 1);
@@ -285,6 +309,7 @@ public class Berserker : PlayerController
     // 검기 발사 기술
     public override void AuraBladeEnter()
     {
+        Mp -= 10;
         GameObject auraBlade = Instantiate(auraBladePrefab, transform.position, Quaternion.identity);
         Vector3 auraBladeDir = transform.localScale.x * this.transform.right;
         auraBlade.GetComponent<AuraBlade>().Fire(auraBladeDir);
@@ -292,7 +317,16 @@ public class Berserker : PlayerController
 
     public override void DieEnter()
     {
-        Instantiate(BloodPrefab, this.transform.localPosition, Quaternion.identity);
+        IsDie = true;
+    }
+
+    IEnumerator MpRecovery()
+    {
+        while (!IsDie)
+        {
+            Mp += 10;
+            yield return new WaitForSeconds(mpRecovery);
+        }      
     }
 
     // 피격

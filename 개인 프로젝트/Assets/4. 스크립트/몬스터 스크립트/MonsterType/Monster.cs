@@ -24,7 +24,7 @@ public class Monster : MonoBehaviour, IHitable
     private float maxhp = 30;
     [SerializeField]
     public int monsterDamage = 5;
-    public float dropExp = 100;
+    private float dropExp = 10;
 
     [Header("몬스터 공격 쿨타임")]
     public float atkCooltime = 1.2f;
@@ -34,6 +34,8 @@ public class Monster : MonoBehaviour, IHitable
     public float dir;
     [Header("몬스터가 되돌아갈 좌표")]
     public Vector2 home;
+
+    private Berserker berserker;
 
     public bool IsBackHome
     {
@@ -91,6 +93,7 @@ public class Monster : MonoBehaviour, IHitable
     {
         monsterAnimation = GetComponent<Animator>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        berserker = GameObject.FindGameObjectWithTag("Player").GetComponent<Berserker>();
         home = transform.position;
         IsBackHome = false;
     }
@@ -112,6 +115,7 @@ public class Monster : MonoBehaviour, IHitable
         isDie = true;
         monsterAnimation.SetTrigger("Die");
         m_Canvas_Trans.gameObject.SetActive(false);
+        berserker.Exp += dropExp;
         Destroy(gameObject, 2);
     }
 

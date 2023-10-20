@@ -523,8 +523,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f067332017c2b934ba3a8e3ea70c3e23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_PlayerRoot: {fileID: 0}
-  m_AttackState: 0
   HittedObjectList: []
 --- !u!1 &1220293311241844
 GameObject:
@@ -780,8 +778,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f067332017c2b934ba3a8e3ea70c3e23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_PlayerRoot: {fileID: 0}
-  m_AttackState: 0
   HittedObjectList: []
 --- !u!1 &1564586633902064
 GameObject:
@@ -873,12 +869,17 @@ MonoBehaviour:
   IsGrounded: 0
   IsJumping: 0
   IsDownJumpCheck: 0
+  HpBarImage: {fileID: 0}
+  hpText: {fileID: 0}
   MoveSpeed: 6
   jumpForce: 15
   damage: 10
+  maxHp: 100
+  hp: 100
   rigidbody: {fileID: 0}
   BloodPrefab: {fileID: 1377245740641916, guid: 9c347b62d6d81a8478425692b427f9d7, type: 3}
-  monster: {fileID: 0}
+  Anime: {fileID: 0}
+  BloodEffect: {fileID: 1377245740641916, guid: 80cd0347e3aeb3747ba6402cc4bcb5ba, type: 3}
   lifeStealPrefab: {fileID: 1219519343587704, guid: 1b55f136553f0f8459f77dcac1a23bba, type: 3}
   rushPrefab: {fileID: 1678961071225480, guid: 4b2a91406764ca542892916ae8419d4a, type: 3}
   auraBladePrefab: {fileID: 1170830133628696, guid: 013bbcb6b80ee0146b039693c041aed9, type: 3}
