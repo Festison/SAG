@@ -5,7 +5,7 @@ using UnityEngine;
 public class BoxBreak : MonoBehaviour, IHitable
 {
     [SerializeField]
-    private float hp = 10;
+    private float hp = 30;
     private int dropCoinCount;
     public GameObject Coin;
     public Animator boxAnimation;
