@@ -265,11 +265,11 @@ public class Berserker : PlayerController
         Collider2D[] cols = Physics2D.OverlapCircleAll(transform.position, 5f);
         foreach (var hitMonster in cols)
         {
-            if (hitMonster.GetComponent<IHitable>() != null)
+            if (hitMonster.GetComponent<Monster>() != null)
             {
                 GameObject lifeSteal = Instantiate(this.lifeStealPrefab, hitMonster.transform.position, Quaternion.identity);
                 lifeSteal.GetComponent<LifeSteal>().Fire(5);
-                hitMonster.transform.GetComponent<IHitable>().Hit(5f);
+                hitMonster.transform.GetComponent<Monster>().Hit(5f);
                 Hp += hpRecorvery * hitMonster.shapeCount;
             }
         }
@@ -329,6 +329,7 @@ public class Berserker : PlayerController
         }      
     }
 
+    public InventoryUI inven;
     // 피격
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -336,6 +337,11 @@ public class Berserker : PlayerController
         {
             Debug.Log("몬스터 공격 맞음");
             Hit(5);
+        }
+        if (collision.GetComponent<Item>() != null)
+        {
+            inven.AddItem(collision.GetComponent<Item>());
+            collision.gameObject.SetActive(false);
         }
     }
 }
