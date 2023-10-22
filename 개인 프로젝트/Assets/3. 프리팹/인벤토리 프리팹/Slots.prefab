@@ -69,7 +69,7 @@ MonoBehaviour:
   m_text: "\uB204\uAD70\uAC00\uC758 \uAC80"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3c6282c8dcf08674b9df8097c962c653, type: 2}
-  m_sharedMaterial: {fileID: 393124714575508609, guid: 3c6282c8dcf08674b9df8097c962c653, type: 2}
+  m_sharedMaterial: {fileID: 6442745164124188192, guid: 3c6282c8dcf08674b9df8097c962c653, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
