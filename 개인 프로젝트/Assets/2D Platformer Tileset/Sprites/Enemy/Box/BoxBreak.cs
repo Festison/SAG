@@ -37,7 +37,7 @@ public class BoxBreak : MonoBehaviour, IHitable
     private void Start()
     {
         boxAnimation = GetComponent<Animator>();
-        dropCoinCount = Random.Range(2, 8);
+        dropCoinCount = Random.Range(2, 9);
     }
 
     public void Break()

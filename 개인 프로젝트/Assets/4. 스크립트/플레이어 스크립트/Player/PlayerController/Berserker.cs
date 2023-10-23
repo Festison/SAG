@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Berserker : PlayerController
@@ -337,11 +336,18 @@ public class Berserker : PlayerController
         {
             Debug.Log("몬스터 공격 맞음");
             Hit(5);
-        }
-        if (collision.GetComponent<Item>() != null)
+        }       
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.GetComponent<Item>() != null && Input.GetKeyDown(KeyCode.Z))
         {
+            Debug.Log("아이템 먹음");
             inven.AddItem(collision.GetComponent<Item>());
             collision.gameObject.SetActive(false);
         }
     }
+
+
 }

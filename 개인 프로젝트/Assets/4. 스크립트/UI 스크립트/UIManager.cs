@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
+
 public class UIManager : MonoBehaviour 
 {
     public static UIManager UI;
@@ -21,19 +23,44 @@ public class UIManager : MonoBehaviour
     public GameObject PlayerObj;
     public GameObject CurrentPlayerObj;
 
+    [Header("현재 플레이어 프리팹")]
+    public GameObject InventoryUi;
+    public bool isInventoryActive=false;
+
+    public TextMeshProUGUI coinText;
+    public Berserker berserker;
+
     void Awake()
     {
         Screen.fullScreen = false;
         UI = this;
     }
 
+    private void Start()
+    {
+
+    }
+
     void Update () 
     {
         KeyUPDownchange();
+        coinText.text = "Gold : " + berserker.Coin;
+
     }
 
     // 키를 누르고 뗄때 이미지 변화
     public void KeyUPDownchange()
     {
+        if (Input.GetKeyDown(KeyCode.I)&& !isInventoryActive)
+        {
+            InventoryUi.SetActive(true);
+            isInventoryActive = true;
+        }
+        else if (Input.GetKeyDown(KeyCode.I) && isInventoryActive)
+        {
+            InventoryUi.SetActive(false);
+            isInventoryActive = false;
+        }
+
     }
 }

@@ -54,6 +54,11 @@ public abstract class PlayerController : MonoBehaviour
     private float level = 1;
 
     [Space(10)]
+    [Header("[코인 개수]")]
+    [SerializeField]
+    private int coin = 0;
+
+    [Space(10)]
     [Header("플레이어 리지드바디")]
     public Rigidbody2D rigidbody;
 
@@ -136,6 +141,19 @@ public abstract class PlayerController : MonoBehaviour
         set
         {
             level = value;
+
+        }
+    }
+
+    public int Coin
+    {
+        get
+        {
+            return coin;
+        }
+        set
+        {
+            coin = value;
 
         }
     }
