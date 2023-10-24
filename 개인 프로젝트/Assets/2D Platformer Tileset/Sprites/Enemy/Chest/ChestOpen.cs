@@ -4,16 +4,17 @@ using UnityEngine;
 
 public class ChestOpen : MonoBehaviour
 {
-    public Animator chestAnimation;
+    private Animator chestAnimation;
+
+    [Header("들어있는 아이템")]
     public GameObject[] items;
     public int randomItem;
+
 
     private void Start()
     {
         chestAnimation = GetComponent<Animator>();
         randomItem = Random.Range(0, 2);
-
-
     }
 
 
