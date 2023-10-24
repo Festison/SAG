@@ -40,14 +40,20 @@ public class Berserker : PlayerController
         if (Input.GetKeyDown(KeyCode.Alpha1) && Mp >= 10)
         {
             Anime.Play("LifeSteal");
+            islifeStealCoolTime = true;
+            StartCoroutine(LifeStealCoolTime(lifeStealCoolTime));
         }
-        if (Input.GetKeyDown(KeyCode.Alpha2) && Mp >= 10)
+        if (Input.GetKeyDown(KeyCode.Alpha2) && Mp >= 10 && !isRushCoolTime)
         {
             Anime.Play("Rush");
+            isRushCoolTime = true;
+            StartCoroutine(RushCoolTime(rushCoolTime));
         }
-        if (Input.GetKeyDown(KeyCode.Alpha3) && Mp >= 10)
+        if (Input.GetKeyDown(KeyCode.Alpha3) && Mp >= 10 && !isAuraBladeCoolTime)
         {
             Anime.Play("AuraBlade");
+            isAuraBladeCoolTime = true;
+            StartCoroutine(AuraBladeCoolTime(auraBladeCoolTime));
         }
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
@@ -249,10 +255,22 @@ public class Berserker : PlayerController
     }
 
     [Space(10)]
-    [Header("플레이어 기술")]
+    [Header("플레이어 스킬")]
     public GameObject lifeStealPrefab;
     public GameObject rushPrefab;
     public GameObject auraBladePrefab;
+
+    [Space(10)]
+    [Header("스킬 쿨타임")]
+    public float lifeStealCoolTime = 3.0f;
+    public float rushCoolTime = 2.0f;
+    public float auraBladeCoolTime = 4.0f;
+
+    [Space(10)]
+    [Header("스킬 쿨타임 상태")]
+    public bool islifeStealCoolTime=false;
+    public bool isRushCoolTime=false;
+    public bool isAuraBladeCoolTime=false;
 
     // 드레인 기술
 
@@ -272,6 +290,7 @@ public class Berserker : PlayerController
                 Hp += hpRecorvery * hitMonster.shapeCount;
             }
         }
+        
     }
 
     // 레이캐스트 확인
@@ -298,6 +317,7 @@ public class Berserker : PlayerController
         rush.transform.localScale = new Vector3(-1 * transform.localScale.x, 1, 1);
         rush.transform.SetParent(this.transform);
         rush.transform.localPosition = new Vector3(-1.37f, 0.179f, 1);
+        
     }
 
     public override void RushExit()
@@ -312,6 +332,7 @@ public class Berserker : PlayerController
         GameObject auraBlade = Instantiate(auraBladePrefab, transform.position, Quaternion.identity);
         Vector3 auraBladeDir = transform.localScale.x * this.transform.right;
         auraBlade.GetComponent<AuraBlade>().Fire(auraBladeDir);
+        
     }
 
     public override void DieEnter()
@@ -326,6 +347,43 @@ public class Berserker : PlayerController
             Mp += 10;
             yield return new WaitForSeconds(mpRecovery);
         }      
+    }
+
+    IEnumerator LifeStealCoolTime(float lifeStealCoolTime)
+    {
+        while (lifeStealCoolTime>0.0f)
+        {
+
+                lifeStealCoolTime -= Time.deltaTime;
+                yield return new WaitForFixedUpdate();
+
+        }
+    }
+
+    IEnumerator RushCoolTime(float rushCoolTime)
+    {
+        while (true)
+        {
+            if (isRushCoolTime == true)
+            {
+                yield return new WaitForSeconds(rushCoolTime);
+                isRushCoolTime = false;
+            }
+            yield return null;
+        }
+    }
+
+    IEnumerator AuraBladeCoolTime(float auraBaldeCoolTime)
+    {
+        while (true)
+        {
+            if (isAuraBladeCoolTime == true)
+            {
+                yield return new WaitForSeconds(auraBaldeCoolTime);
+                isAuraBladeCoolTime = false;
+            }
+            yield return null;
+        }
     }
 
     public InventoryUI inven;
@@ -346,6 +404,14 @@ public class Berserker : PlayerController
             Debug.Log("아이템 먹음");
             inven.AddItem(collision.GetComponent<Item>());
             collision.gameObject.SetActive(false);
+        }        
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.GetComponent<Trap>()!=null)
+        {
+            Hit(5);
         }
     }
 

@@ -25,7 +25,9 @@ public class UIManager : MonoBehaviour
 
     [Header("현재 플레이어 프리팹")]
     public GameObject InventoryUi;
+    public GameObject EquipmentInventoryUi;
     public bool isInventoryActive=false;
+    public bool isEquipmentInventoryActive=false;
 
     public TextMeshProUGUI coinText;
     public Berserker berserker;
@@ -60,6 +62,16 @@ public class UIManager : MonoBehaviour
         {
             InventoryUi.SetActive(false);
             isInventoryActive = false;
+        }
+        if (Input.GetKeyDown(KeyCode.E) && !isEquipmentInventoryActive)
+        {
+            EquipmentInventoryUi.SetActive(true);
+            isEquipmentInventoryActive = true;
+        }
+        else if (Input.GetKeyDown(KeyCode.E) && isEquipmentInventoryActive)
+        {
+            EquipmentInventoryUi.SetActive(false);
+            isEquipmentInventoryActive = false;
         }
 
     }

@@ -28,7 +28,8 @@ public abstract class PlayerController : MonoBehaviour
     public Image ExpBarImage;
     public TextMeshProUGUI expText;
     public TextMeshProUGUI levelText;
-
+    public Image[] hideSkill;
+    public TextMeshProUGUI hideSkillTimeTexts;
 
     [Space(10)]
     [Header("[스텟]")]

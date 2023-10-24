@@ -8,13 +8,13 @@ public class ChestOpen : MonoBehaviour
 
     [Header("들어있는 아이템")]
     public GameObject[] items;
-    public int randomItem;
+    private int randomItem;
 
 
     private void Start()
     {
         chestAnimation = GetComponent<Animator>();
-        randomItem = Random.Range(0, 2);
+        randomItem = Random.Range(0, 5);
     }
 
 
