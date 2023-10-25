@@ -63,12 +63,12 @@ public class UIManager : MonoBehaviour
             InventoryUi.SetActive(false);
             isInventoryActive = false;
         }
-        if (Input.GetKeyDown(KeyCode.E) && !isEquipmentInventoryActive)
+        if (Input.GetKeyDown(KeyCode.P) && !isEquipmentInventoryActive)
         {
             EquipmentInventoryUi.SetActive(true);
             isEquipmentInventoryActive = true;
         }
-        else if (Input.GetKeyDown(KeyCode.E) && isEquipmentInventoryActive)
+        else if (Input.GetKeyDown(KeyCode.P) && isEquipmentInventoryActive)
         {
             EquipmentInventoryUi.SetActive(false);
             isEquipmentInventoryActive = false;

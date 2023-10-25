@@ -47,7 +47,7 @@ public class Berserker : PlayerController
 
     public void CheckInput()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1) && Mp >= 10 && !islifeStealCoolTime)
+        if (Input.GetKeyDown(KeyCode.Q) && Mp >= 10 && !islifeStealCoolTime)
         {
             Anime.Play("LifeSteal");
             islifeStealCoolTime = true;
@@ -55,7 +55,7 @@ public class Berserker : PlayerController
             lifeStealCoolTimeImage.fillAmount = 1;
             StartCoroutine(LifeStealCoolTime());
         }
-        if (Input.GetKeyDown(KeyCode.Alpha2) && Mp >= 10 && !isRushCoolTime)
+        if (Input.GetKeyDown(KeyCode.W) && Mp >= 10 && !isRushCoolTime)
         {
             Anime.Play("Rush");
             isRushCoolTime = true;
@@ -63,7 +63,7 @@ public class Berserker : PlayerController
             rushCoolTimeImage.fillAmount = 1;
             StartCoroutine(RushCoolTime());
         }
-        if (Input.GetKeyDown(KeyCode.Alpha3) && Mp >= 10 && !isAuraBladeCoolTime)
+        if (Input.GetKeyDown(KeyCode.E) && Mp >= 10 && !isAuraBladeCoolTime)
         {
             Anime.Play("AuraBlade");
             isAuraBladeCoolTime = true;
@@ -71,7 +71,7 @@ public class Berserker : PlayerController
             auraBladeCoolTimeImage.fillAmount = 1;
             StartCoroutine(AuraBladeCoolTime());
         }
-        if (Input.GetKeyDown(KeyCode.Alpha4))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             Anime.Play("Die");
         }
@@ -108,17 +108,17 @@ public class Berserker : PlayerController
             return;
         }
 
-        if (Input.GetKey(KeyCode.Mouse1))
+        if (Input.GetKey(KeyCode.S))
         {
             Anime.Play("Guard");
             return;
         }
-        if (Input.GetKeyDown(KeyCode.S))  //아래 버튼 눌렀을때. 
+        if (Input.GetKeyDown(KeyCode.DownArrow))  //아래 버튼 눌렀을때. 
         {
             IsSit = true;
             Anime.Play("Sit");
         }
-        else if (Input.GetKeyUp(KeyCode.S))
+        else if (Input.GetKeyUp(KeyCode.DownArrow))
         {
             Anime.Play("Idle");
             IsSit = false;
@@ -142,7 +142,7 @@ public class Berserker : PlayerController
         // 공격 상태가 아닐 때
         if (!Anime.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
         {
-            if (Input.GetKey(KeyCode.Mouse0))
+            if (Input.GetKey(KeyCode.A))
             {
                 Anime.Play("Attack");
             }
@@ -163,7 +163,7 @@ public class Berserker : PlayerController
         }
 
         // 우측 이동
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.RightArrow))
         {
             if (IsGrounded)  // 땅바닥에 있었을때. 
             {
@@ -189,7 +189,7 @@ public class Berserker : PlayerController
         }
 
         // 좌측 이동
-        else if (Input.GetKey(KeyCode.A))
+        else if (Input.GetKey(KeyCode.LeftArrow))
         {
             if (IsGrounded)  // 땅바닥에 있었을때. 
             {

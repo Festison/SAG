@@ -420,7 +420,6 @@ MonoBehaviour:
   hp: 30
   maxhp: 30
   monsterDamage: 5
-  dropExp: 100
   atkCooltime: 1.2
   atkDelay: 0
   dir: 0

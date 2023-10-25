@@ -27,10 +27,4 @@ public class ReadyState : StateMachineBehaviour
             animator.SetBool("IsFollow", true);
         }
     }
-
-    // 상태에서 나갈 때
-    override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
-
-    }
 }
