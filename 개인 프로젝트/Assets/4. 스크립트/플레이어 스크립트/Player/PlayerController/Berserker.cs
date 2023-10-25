@@ -42,8 +42,8 @@ public class Berserker : PlayerController
     public void SkillCoolTimeInit()
     {
         lifeStealCoolTimeImage.fillAmount = 0;
-        //rushCoolTimeImage.fillAmount = 0;
-        //auraBladeCoolTimeImage.fillAmount = 0;
+        rushCoolTimeImage.fillAmount = 0;
+        auraBladeCoolTimeImage.fillAmount = 0;
     }
 
     public void CheckInput()
@@ -231,6 +231,7 @@ public class Berserker : PlayerController
         }
     }
 
+    #region 구현완료
     // 달리지 않고 공격하지 않는 상태일시 가만히 있는 애니메이션 재생
     protected override void IdleState()
     {
@@ -264,6 +265,7 @@ public class Berserker : PlayerController
             hitMonster.transform.GetComponent<IHitable>().Hit(damage);
         }
     }
+    #endregion
 
     [Space(10)]
     [Header("플레이어 스킬")]
