@@ -396,22 +396,22 @@ public class Berserker : PlayerController
     //}
 
 
-    IEnumerator LifeStealCountCoroutine(float currentCoolTime) //스킬 쿨타임 텍스트 표시
-    {
-        if (currentCoolTime > 0)
-        {
-            currentCoolTime -= 1;
+    //IEnumerator LifeStealCountCoroutine(float currentCoolTime) //스킬 쿨타임 텍스트 표시
+    //{
+    //    if (currentCoolTime > 0)
+    //    {
+    //        currentCoolTime -= 1;
 
-            lifeStealCoolTimeText.text = currentCoolTime.ToString()+"초";
+    //        lifeStealCoolTimeText.text = currentCoolTime.ToString()+"초";
 
-            yield return new WaitForSeconds(1f);
-            StartCoroutine(LifeStealCountCoroutine(currentCoolTime));
-        }
-        else if (lifeStealCoolTimeImage.fillAmount == 0)
-        {
-            lifeStealCoolTimeText.text = "";
-        }
-    }
+    //        yield return new WaitForSeconds(1f);
+    //        StartCoroutine(LifeStealCountCoroutine(currentCoolTime));
+    //    }
+    //    else if (lifeStealCoolTimeImage.fillAmount == 0)
+    //    {
+    //        lifeStealCoolTimeText.text = "";
+    //    }
+    //}
 
 
     public InventoryUI inven;
