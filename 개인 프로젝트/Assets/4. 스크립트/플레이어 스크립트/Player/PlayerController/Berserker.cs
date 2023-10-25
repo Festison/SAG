@@ -42,8 +42,8 @@ public class Berserker : PlayerController
     public void SkillCoolTimeInit()
     {
         lifeStealCoolTimeImage.fillAmount = 0;
-        rushCoolTimeImage.fillAmount = 0;
-        auraBladeCoolTimeImage.fillAmount = 0;
+        //rushCoolTimeImage.fillAmount = 0;
+        //auraBladeCoolTimeImage.fillAmount = 0;
     }
 
     public void CheckInput()
@@ -378,7 +378,7 @@ public class Berserker : PlayerController
         { 
             if (islifeStealCoolTime)
             {
-              //  yield return StartCoroutine(TestCo());
+                yield return new WaitForSeconds(lifeStealCoolTime);
                 islifeStealCoolTime = false;
             }
         } 
