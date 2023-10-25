@@ -54,7 +54,7 @@ public class Berserker : PlayerController
             islifeStealCoolTime = true;
             lifeStealCoolTimeText.text = "";
             lifeStealCoolTimeImage.fillAmount = 1;
-            StartCoroutine(LifeStealCoolTime());
+            //StartCoroutine(LifeStealCoolTime());
         }
         if (Input.GetKeyDown(KeyCode.Alpha2) && Mp >= 10 && !isRushCoolTime)
         {
@@ -374,17 +374,17 @@ public class Berserker : PlayerController
         }      
     }
 
-    IEnumerator LifeStealCoolTime()
-    {
-       while(true)
-        { 
-            if (islifeStealCoolTime)
-            {
-                yield return new WaitForSeconds(lifeStealCoolTime);
-                islifeStealCoolTime = false;
-            }
-        } 
-    }
+    //IEnumerator LifeStealCoolTime()
+    //{
+    //   while(true)
+    //    { 
+    //        if (islifeStealCoolTime)
+    //        {
+    //            yield return new WaitForSeconds(lifeStealCoolTime);
+    //            islifeStealCoolTime = false;
+    //        }
+    //    } 
+    //}
 
     //IEnumerator TestCo()
     //{
