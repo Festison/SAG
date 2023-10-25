@@ -165,6 +165,7 @@ public abstract class PlayerController : MonoBehaviour
         maxMp += 20;
         Mp += 20;
         maxExp += 50;
+        damage += 2;
     }
 
     // 좌우 반전 함수

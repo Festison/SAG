@@ -14,7 +14,6 @@ public class Berserker : PlayerController
 
         StartCoroutine(MpRecovery());
         SkillCoolTimeInit();
-        
     }
 
     private void Update()
@@ -54,17 +53,23 @@ public class Berserker : PlayerController
             islifeStealCoolTime = true;
             lifeStealCoolTimeText.text = "";
             lifeStealCoolTimeImage.fillAmount = 1;
-            //StartCoroutine(LifeStealCoolTime());
+            StartCoroutine(LifeStealCoolTime());
         }
         if (Input.GetKeyDown(KeyCode.Alpha2) && Mp >= 10 && !isRushCoolTime)
         {
             Anime.Play("Rush");
             isRushCoolTime = true;
+            rushCoolTimeText.text = "";
+            rushCoolTimeImage.fillAmount = 1;
+            StartCoroutine(RushCoolTime());
         }
         if (Input.GetKeyDown(KeyCode.Alpha3) && Mp >= 10 && !isAuraBladeCoolTime)
         {
             Anime.Play("AuraBlade");
             isAuraBladeCoolTime = true;
+            auraBladeCoolTimeText.text = "";
+            auraBladeCoolTimeImage.fillAmount = 1;
+            StartCoroutine(AuraBladeCoolTime());
         }
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
@@ -100,7 +105,6 @@ public class Berserker : PlayerController
             || Anime.GetCurrentAnimatorStateInfo(0).IsName("Rush")
             || Anime.GetCurrentAnimatorStateInfo(0).IsName("AuraBlade"))
         {
-
             return;
         }
 
@@ -294,9 +298,9 @@ public class Berserker : PlayerController
 
     [Space(10)]
     [Header("스킬 쿨타임 상태")]
-    public bool islifeStealCoolTime=false;
-    public bool isRushCoolTime=false;
-    public bool isAuraBladeCoolTime=false;
+    public bool islifeStealCoolTime = false;
+    public bool isRushCoolTime = false;
+    public bool isAuraBladeCoolTime = false;
 
     // 드레인 기술
     public override void LifeStealEnter()
@@ -315,7 +319,7 @@ public class Berserker : PlayerController
                 Hp += hpRecorvery * hitMonster.shapeCount;
             }
         }
-        
+
     }
 
     // 레이캐스트 확인
@@ -342,7 +346,7 @@ public class Berserker : PlayerController
         rush.transform.localScale = new Vector3(-1 * transform.localScale.x, 1, 1);
         rush.transform.SetParent(this.transform);
         rush.transform.localPosition = new Vector3(-1.37f, 0.179f, 1);
-        
+
     }
 
     public override void RushExit()
@@ -357,7 +361,7 @@ public class Berserker : PlayerController
         GameObject auraBlade = Instantiate(auraBladePrefab, transform.position, Quaternion.identity);
         Vector3 auraBladeDir = transform.localScale.x * this.transform.right;
         auraBlade.GetComponent<AuraBlade>().Fire(auraBladeDir);
-        
+
     }
 
     public override void DieEnter()
@@ -371,47 +375,71 @@ public class Berserker : PlayerController
         {
             Mp += 10;
             yield return new WaitForSeconds(mpRecovery);
-        }      
+        }
     }
 
-    //IEnumerator LifeStealCoolTime()
-    //{
-    //   while(true)
-    //    { 
-    //        if (islifeStealCoolTime)
-    //        {
-    //            yield return new WaitForSeconds(lifeStealCoolTime);
-    //            islifeStealCoolTime = false;
-    //        }
-    //    } 
-    //}
+    IEnumerator LifeStealCoolTime()
+    {
+        if (islifeStealCoolTime)
+        {
+            yield return StartCoroutine(LifeStealCoolTimeTextCo());
+            islifeStealCoolTime = false;
+        }
+    }
 
-    //IEnumerator TestCo()
-    //{
-    //    while (lifeStealCoolTimeImage.fillAmount > 0)
-    //    {
-    //        lifeStealCoolTimeImage.fillAmount -= Time.smoothDeltaTime / lifeStealCoolTime;
-    //        yield return null;
-    //    }
-    //}
+    IEnumerator LifeStealCoolTimeTextCo()
+    {
+        while (lifeStealCoolTimeImage.fillAmount > 0)
+        {
+            lifeStealCoolTimeImage.fillAmount -= Time.smoothDeltaTime / lifeStealCoolTime;
+            lifeStealCoolTimeText.text = ((int)(lifeStealCoolTime * lifeStealCoolTimeImage.fillAmount) + 1).ToString() + "초";
+            yield return null;
+        }
 
+        lifeStealCoolTimeText.text = "";
+    }
 
-    //IEnumerator LifeStealCountCoroutine(float currentCoolTime) //스킬 쿨타임 텍스트 표시
-    //{
-    //    if (currentCoolTime > 0)
-    //    {
-    //        currentCoolTime -= 1;
+    IEnumerator RushCoolTime()
+    {
+        if (isRushCoolTime)
+        {
+            yield return StartCoroutine(RushCoolTimeTextCo());
+            isRushCoolTime = false;
+        }
+    }
 
-    //        lifeStealCoolTimeText.text = currentCoolTime.ToString()+"초";
+    IEnumerator RushCoolTimeTextCo()
+    {
+        while (rushCoolTimeImage.fillAmount > 0)
+        {
+            rushCoolTimeImage.fillAmount -= Time.smoothDeltaTime / rushCoolTime;
+            rushCoolTimeText.text = ((int)(rushCoolTime * rushCoolTimeImage.fillAmount) + 1).ToString() + "초";
+            yield return null;
+        }
 
-    //        yield return new WaitForSeconds(1f);
-    //        StartCoroutine(LifeStealCountCoroutine(currentCoolTime));
-    //    }
-    //    else if (lifeStealCoolTimeImage.fillAmount == 0)
-    //    {
-    //        lifeStealCoolTimeText.text = "";
-    //    }
-    //}
+        rushCoolTimeText.text = "";
+    }
+
+    IEnumerator AuraBladeCoolTime()
+    {
+        if (isAuraBladeCoolTime)
+        {
+            yield return StartCoroutine(AuraBladeCoolTimeTextCo());
+            isAuraBladeCoolTime = false;
+        }
+    }
+
+    IEnumerator AuraBladeCoolTimeTextCo()
+    {
+        while (auraBladeCoolTimeImage.fillAmount > 0)
+        {
+            auraBladeCoolTimeImage.fillAmount -= Time.smoothDeltaTime / auraBladeCoolTime;
+            auraBladeCoolTimeText.text = ((int)(auraBladeCoolTime * auraBladeCoolTimeImage.fillAmount) + 1).ToString() + "초";
+            yield return null;
+        }
+
+        auraBladeCoolTimeText.text = "";
+    }
 
 
     public InventoryUI inven;
@@ -422,7 +450,7 @@ public class Berserker : PlayerController
         {
             Debug.Log("몬스터 공격 맞음");
             Hit(5);
-        }       
+        }
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -432,12 +460,12 @@ public class Berserker : PlayerController
             Debug.Log("아이템 먹음");
             inven.AddItem(collision.GetComponent<Item>());
             collision.gameObject.SetActive(false);
-        }        
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.GetComponent<Trap>()!=null)
+        if (collision.collider.GetComponent<Trap>() != null)
         {
             Hit(5);
         }
