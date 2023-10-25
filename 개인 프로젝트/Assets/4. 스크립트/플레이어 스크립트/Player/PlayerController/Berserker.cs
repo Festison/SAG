@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class Berserker : PlayerController
 {
@@ -11,6 +13,8 @@ public class Berserker : PlayerController
         rigidbody = this.transform.GetComponent<Rigidbody2D>();
 
         StartCoroutine(MpRecovery());
+        SkillCoolTimeInit();
+        
     }
 
     private void Update()
@@ -35,25 +39,32 @@ public class Berserker : PlayerController
         levelText.text = "Lv. " + Level;
     }
 
+    public void SkillCoolTimeInit()
+    {
+        lifeStealCoolTimeImage.fillAmount = 0;
+        rushCoolTimeImage.fillAmount = 0;
+        auraBladeCoolTimeImage.fillAmount = 0;
+    }
+
     public void CheckInput()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1) && Mp >= 10)
+        if (Input.GetKeyDown(KeyCode.Alpha1) && Mp >= 10 && !islifeStealCoolTime)
         {
             Anime.Play("LifeSteal");
             islifeStealCoolTime = true;
-            StartCoroutine(LifeStealCoolTime(lifeStealCoolTime));
+            lifeStealCoolTimeText.text = "";
+            lifeStealCoolTimeImage.fillAmount = 1;
+            StartCoroutine(LifeStealCoolTime());
         }
         if (Input.GetKeyDown(KeyCode.Alpha2) && Mp >= 10 && !isRushCoolTime)
         {
             Anime.Play("Rush");
             isRushCoolTime = true;
-            StartCoroutine(RushCoolTime(rushCoolTime));
         }
         if (Input.GetKeyDown(KeyCode.Alpha3) && Mp >= 10 && !isAuraBladeCoolTime)
         {
             Anime.Play("AuraBlade");
             isAuraBladeCoolTime = true;
-            StartCoroutine(AuraBladeCoolTime(auraBladeCoolTime));
         }
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
@@ -266,6 +277,19 @@ public class Berserker : PlayerController
     public float rushCoolTime = 2.0f;
     public float auraBladeCoolTime = 4.0f;
 
+    public float lifeStealCoolTimeMax = 3.0f;
+    public float rushCoolTimeMax = 2.0f;
+    public float auraBladeCoolTimeMax = 4.0f;
+
+    [Space(10)]
+    [Header("스킬 쿨타임 텍스트")]
+    public TextMeshProUGUI lifeStealCoolTimeText;
+    public TextMeshProUGUI rushCoolTimeText;
+    public TextMeshProUGUI auraBladeCoolTimeText;
+    public Image lifeStealCoolTimeImage;
+    public Image rushCoolTimeImage;
+    public Image auraBladeCoolTimeImage;
+
     [Space(10)]
     [Header("스킬 쿨타임 상태")]
     public bool islifeStealCoolTime=false;
@@ -273,7 +297,6 @@ public class Berserker : PlayerController
     public bool isAuraBladeCoolTime=false;
 
     // 드레인 기술
-
     public override void LifeStealEnter()
     {
         Mp -= 10;
@@ -349,42 +372,45 @@ public class Berserker : PlayerController
         }      
     }
 
-    IEnumerator LifeStealCoolTime(float lifeStealCoolTime)
+    IEnumerator LifeStealCoolTime()
     {
-        while (lifeStealCoolTime>0.0f)
-        {
-
-                lifeStealCoolTime -= Time.deltaTime;
-                yield return new WaitForFixedUpdate();
-
-        }
-    }
-
-    IEnumerator RushCoolTime(float rushCoolTime)
-    {
-        while (true)
-        {
-            if (isRushCoolTime == true)
+       while(true)
+        { 
+            if (islifeStealCoolTime)
             {
-                yield return new WaitForSeconds(rushCoolTime);
-                isRushCoolTime = false;
+              //  yield return StartCoroutine(TestCo());
+                islifeStealCoolTime = false;
             }
-            yield return null;
+        } 
+    }
+
+    //IEnumerator TestCo()
+    //{
+    //    while (lifeStealCoolTimeImage.fillAmount > 0)
+    //    {
+    //        lifeStealCoolTimeImage.fillAmount -= Time.smoothDeltaTime / lifeStealCoolTime;
+    //        yield return null;
+    //    }
+    //}
+
+
+    IEnumerator LifeStealCountCoroutine(float currentCoolTime) //스킬 쿨타임 텍스트 표시
+    {
+        if (currentCoolTime > 0)
+        {
+            currentCoolTime -= 1;
+
+            lifeStealCoolTimeText.text = currentCoolTime.ToString()+"초";
+
+            yield return new WaitForSeconds(1f);
+            StartCoroutine(LifeStealCountCoroutine(currentCoolTime));
+        }
+        else if (lifeStealCoolTimeImage.fillAmount == 0)
+        {
+            lifeStealCoolTimeText.text = "";
         }
     }
 
-    IEnumerator AuraBladeCoolTime(float auraBaldeCoolTime)
-    {
-        while (true)
-        {
-            if (isAuraBladeCoolTime == true)
-            {
-                yield return new WaitForSeconds(auraBaldeCoolTime);
-                isAuraBladeCoolTime = false;
-            }
-            yield return null;
-        }
-    }
 
     public InventoryUI inven;
     // 피격
