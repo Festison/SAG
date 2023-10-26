@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 979806790842534890}
   - component: {fileID: 979806790842534891}
   - component: {fileID: 979806790842534889}
-  - component: {fileID: 5907966069906430130}
+  - component: {fileID: 4947355670959643813}
   m_Layer: 5
   m_Name: firstQuickSlot
   m_TagString: Untagged
@@ -95,7 +95,7 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 5, y: -5}
   m_UseGraphicAlpha: 1
---- !u!114 &5907966069906430130
+--- !u!114 &4947355670959643813
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -104,7 +104,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 979806790842534894}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5bc94f66a7398b74f949b82cf87ba1e7, type: 3}
+  m_Script: {fileID: 11500000, guid: 03732490d831d4247ab5693a9ee523bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   itemImage: {fileID: 4824454227906447333}

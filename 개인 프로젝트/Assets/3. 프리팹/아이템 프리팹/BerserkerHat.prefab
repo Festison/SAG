@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 640983562954598518}
   - component: {fileID: 3639238829816580561}
   - component: {fileID: 656316038483963128}
-  - component: {fileID: 1541303113732293752}
+  - component: {fileID: -7770018129326001635}
   m_Layer: 0
   m_Name: BerserkerHat
   m_TagString: Untagged
@@ -77,7 +77,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: 2d57e333683b17d4fb0a5ea6b50927b9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -115,7 +115,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.1164141, y: 0.94}
   m_EdgeRadius: 0
---- !u!114 &1541303113732293752
+--- !u!114 &-7770018129326001635
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -124,12 +124,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 2712288112053038656}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e137a07590fe1e41859951455d194de, type: 3}
+  m_Script: {fileID: 11500000, guid: 1d2057ca1a5fa03479ac3ef41f1af317, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  value: 5
   itemSprite: {fileID: 21300000, guid: 2d57e333683b17d4fb0a5ea6b50927b9, type: 3}
-  itemName: "\uBC84\uC11C\uCEE4\uC758 \uD22C\uAD6C"
+  itemName: "\uAD11\uC804\uC0AC\uC758 \uD22C\uAD6C"
+  equimentItemType: 3
 --- !u!1 &3129460886923473612
 GameObject:
   m_ObjectHideFlags: 0

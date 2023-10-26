@@ -4,12 +4,16 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
-    public int value;
     public Sprite itemSprite;
     public string itemName;
-  
-    public void Use(PlayerController player)
+
+    public virtual void Use(PlayerController player)
     {
-        player.Hp += value;
+
+    }
+
+    public virtual void Equipment(PlayerController player)
+    {
+
     }
 }

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5369697913987897226}
   - component: {fileID: 5369697913987897229}
   - component: {fileID: 5369697913987897227}
-  - component: {fileID: -9173585455018438166}
+  - component: {fileID: 4642936645184615843}
   m_Layer: 5
   m_Name: ThirdQuickSlot
   m_TagString: Untagged
@@ -95,7 +95,7 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 5, y: -5}
   m_UseGraphicAlpha: 1
---- !u!114 &-9173585455018438166
+--- !u!114 &4642936645184615843
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -104,11 +104,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 5369697913987897230}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5bc94f66a7398b74f949b82cf87ba1e7, type: 3}
+  m_Script: {fileID: 11500000, guid: 03732490d831d4247ab5693a9ee523bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   itemImage: {fileID: 148081544452954966}
-  itemNameText: {fileID: 0}
   item: {fileID: 0}
 --- !u!1 &5369697914348732028
 GameObject:
@@ -179,7 +178,7 @@ MonoBehaviour:
   m_text: 3
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3c6282c8dcf08674b9df8097c962c653, type: 2}
-  m_sharedMaterial: {fileID: 393124714575508609, guid: 3c6282c8dcf08674b9df8097c962c653, type: 2}
+  m_sharedMaterial: {fileID: 6442745164124188192, guid: 3c6282c8dcf08674b9df8097c962c653, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

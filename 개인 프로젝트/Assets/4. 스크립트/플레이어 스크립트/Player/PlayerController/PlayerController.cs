@@ -28,6 +28,7 @@ public abstract class PlayerController : MonoBehaviour
     public Image ExpBarImage;
     public TextMeshProUGUI expText;
     public TextMeshProUGUI levelText;
+    public TextMeshProUGUI damageText;
 
     [Space(10)]
     [Header("[스텟]")]
@@ -38,11 +39,11 @@ public abstract class PlayerController : MonoBehaviour
     [Range(0, 20)]
     public float damage = 10;
     [SerializeField]
-    protected float maxHp = 100;
+    public float maxHp = 100;
     [SerializeField]
     private float hp = 100;
     [SerializeField]
-    protected float maxMp = 100;
+    public float maxMp = 100;
     [SerializeField]
     private float mp = 100;
     [SerializeField]
@@ -54,8 +55,7 @@ public abstract class PlayerController : MonoBehaviour
 
     [Space(10)]
     [Header("[코인 개수]")]
-    [SerializeField]
-    private int coin = 0;
+    public int coin = 100;
 
     [Space(10)]
     [Header("플레이어 리지드바디")]

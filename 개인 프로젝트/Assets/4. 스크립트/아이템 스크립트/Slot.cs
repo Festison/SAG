@@ -36,7 +36,7 @@ public class Slot : MonoBehaviour,IPointerDownHandler,IPointerUpHandler,IPointer
         Debug.Log(gameObject.name + "¾÷");
     }
 
-    public void SetItem(Item item)
+    public virtual void SetItem(Item item)
     {
         this.item = item;
         if(this.item == null)
@@ -45,15 +45,12 @@ public class Slot : MonoBehaviour,IPointerDownHandler,IPointerUpHandler,IPointer
             if (itemNameText!=null)
             {
                 itemNameText.text = "";
-            }
-            
+            }        
         }
         else
         {
             itemImage.sprite = this.item.itemSprite;
             itemNameText.text = this.item.itemName;
-        }
-        
+        }       
     }
-
 }

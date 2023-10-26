@@ -36,6 +36,7 @@ public class Berserker : PlayerController
         expText.text = Exp + " / " + maxExp;
         ExpBarImage.fillAmount = Mathf.Lerp(ExpBarImage.fillAmount, Exp / maxExp, Time.deltaTime * lerpSpeed);
         levelText.text = "Lv. " + Level;
+        damageText.text = "플레이어 공격력 : " + damage;
     }
 
     public void SkillCoolTimeInit()
