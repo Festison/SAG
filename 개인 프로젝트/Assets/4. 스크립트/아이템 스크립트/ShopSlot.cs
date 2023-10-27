@@ -22,10 +22,10 @@ public class ShopSlot : MonoBehaviour, IPointerClickHandler
     {
         if (item != null)
         {
-            if (item is ConsumableItem && player.Coin >= 50)
+            if (item is ConsumableItem && player.Coin >= 100)
             {
                 inven.AddItem(item);
-                player.Coin -= 50;
+                player.Coin -= 100;
             }
         }
     }

@@ -18,4 +18,28 @@ public class QuickSlot : Slot
             itemImage.sprite = this.item.itemSprite;
         }
     }
+
+    private void Update()
+    {
+        QuickSlotKey();
+    }
+
+    public void QuickSlotKey()
+    {
+        if (item != null && Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            item.Use(FindObjectOfType<PlayerController>());
+            this.SetItem(null);
+        }
+        else if (item != null && Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            item.Use(FindObjectOfType<PlayerController>());
+            this.SetItem(null);
+        }
+        else if (item != null && Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            item.Use(FindObjectOfType<PlayerController>());
+            this.SetItem(null);
+        }
+    }
 }

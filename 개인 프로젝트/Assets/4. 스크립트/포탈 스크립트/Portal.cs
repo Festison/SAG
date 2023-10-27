@@ -17,9 +17,9 @@ public class Portal : MonoBehaviour
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.GetComponent<Berserker>()!=null&& Input.GetKeyDown(KeyCode.W))
+        if (collision.GetComponent<Berserker>()!=null&& Input.GetKeyDown(KeyCode.UpArrow))
         {
-            collision.transform.position = position + new Vector2(2, 2);
+            collision.transform.position = position;
             theCamera.SetBound(targetBound);
         }
     }

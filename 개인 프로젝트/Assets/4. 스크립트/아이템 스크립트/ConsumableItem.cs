@@ -18,13 +18,13 @@ public class ConsumableItem : Item
         switch (potion)
         {
             case Potion.RedPotion:
-                player.Hp += 5;
+                player.Hp += 50;
                 break;
             case Potion.BluePotion:
-                player.Mp += 5;
+                player.Mp += 50;
                 break;
             case Potion.GreenPotion:
-                player.Exp += 5;
+                player.Exp += 20;
                 break;
             default:
                 break;

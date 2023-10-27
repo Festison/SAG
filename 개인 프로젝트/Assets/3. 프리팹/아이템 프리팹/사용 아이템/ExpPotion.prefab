@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 21300000, guid: 8e3514c6f8424af4fac84231684262c1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: be05322a2a91c7240bb8c9a96b4d07d3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -103,7 +103,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.32, y: 0.32}
+    oldSize: {x: 0.58, y: 0.83}
     newSize: {x: 0.86, y: 0.94}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -124,6 +124,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ac51138723c11f4587a8b44959f3646, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemSprite: {fileID: 21300000, guid: 8e3514c6f8424af4fac84231684262c1, type: 3}
+  itemSprite: {fileID: 21300000, guid: be05322a2a91c7240bb8c9a96b4d07d3, type: 3}
   itemName: "\uACBD\uD5D8\uCE58 \uD3EC\uC158"
   potion: 2
