@@ -452,6 +452,10 @@ public class Berserker : PlayerController
             Debug.Log("몬스터 공격 맞음");
             Hit(5);
         }
+        if (collision.GetComponent<FireBall>() != null)
+        {
+            Hit(5);
+        }
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -467,6 +471,10 @@ public class Berserker : PlayerController
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.collider.GetComponent<Trap>() != null)
+        {
+            Hit(5);
+        }
+        if (collision.collider.GetComponent<Arrow>() != null)
         {
             Hit(5);
         }

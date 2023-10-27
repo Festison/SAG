@@ -6,6 +6,7 @@ public class MonsterCount : MonoBehaviour
 {
     public GameObject chest;
     public GameObject Portal;
+    public GameObject Map;
     public bool isMonsterCount = false;
     void Update()
     {
@@ -13,6 +14,7 @@ public class MonsterCount : MonoBehaviour
         {
             chest.SetActive(true);
             Portal.SetActive(true);
+            Map.SetActive(true);
             isMonsterCount = true;
         }
     }
