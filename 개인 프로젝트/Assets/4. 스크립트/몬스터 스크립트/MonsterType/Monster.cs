@@ -24,7 +24,7 @@ public class Monster : MonoBehaviour, IHitable
     private float maxhp = 30;
     [SerializeField]
     public int monsterDamage = 5;
-    private float dropExp = 10;
+    public float dropExp = 10;
 
     [Header("몬스터 공격 쿨타임")]
     public float atkCooltime = 1.2f;

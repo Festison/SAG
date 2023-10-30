@@ -89,6 +89,7 @@ public abstract class PlayerController : MonoBehaviour
             }
             else if (hp <= 0)
             {
+                DieEnter();
                 // 플레이어 죽음
             }
         }
@@ -157,6 +158,20 @@ public abstract class PlayerController : MonoBehaviour
         }
     }
 
+    public static PlayerController instance=null;
+
+    public void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
+    }
     public void LevelUp()
     {
         Level++;

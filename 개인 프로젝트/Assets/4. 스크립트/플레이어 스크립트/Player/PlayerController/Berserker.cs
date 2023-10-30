@@ -11,6 +11,8 @@ public class Berserker : PlayerController
         CapsulleCollider = this.transform.GetComponent<CapsuleCollider2D>();
         Anime = this.transform.Find("model").GetComponent<Animator>();
         rigidbody = this.transform.GetComponent<Rigidbody2D>();
+        theCamera = FindObjectOfType<CameraManager>();
+        position = teleportPosition.transform.position;
 
         StartCoroutine(MpRecovery());
         SkillCoolTimeInit();
@@ -365,9 +367,23 @@ public class Berserker : PlayerController
 
     }
 
+    public GameObject teleportPosition = null;
+    Vector2 position;
+
+    public Collider2D targetBound;
+    public CameraManager theCamera;
+
     public override void DieEnter()
     {
         IsDie = true;
+
+        if (IsDie)
+        {
+            Anime.Play("Die");
+            gameObject.transform.position = new Vector3(0, 0, 0);
+            theCamera.SetBound(targetBound);
+            Hp = maxHp;
+        }
     }
 
     IEnumerator MpRecovery()

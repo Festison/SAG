@@ -82,7 +82,7 @@ public class Egghatching : MonoBehaviour, IHitable
     // 10초뒤에 부화하는 코드
     IEnumerator Hatch()
     {       
-        yield return new WaitForSeconds(30f);
+        yield return new WaitForSeconds(150f);
         Instantiate(Spider, gameObject.transform.position, Quaternion.identity);
         Die();
     }

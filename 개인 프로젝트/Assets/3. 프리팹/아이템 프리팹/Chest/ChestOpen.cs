@@ -5,6 +5,7 @@ using UnityEngine;
 public class ChestOpen : MonoBehaviour
 {
     private Animator chestAnimation;
+    public GameObject Cansvas;
 
     [Header("들어있는 아이템")]
     public GameObject[] items;
@@ -31,8 +32,9 @@ public class ChestOpen : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
+        Cansvas.SetActive(true);
         if (collision.GetComponent<Berserker>() != null && Input.GetKeyDown(KeyCode.F))
-        {
+        {          
             Debug.Log("충돌");
             Break();
         }
