@@ -454,7 +454,15 @@ public class Berserker : PlayerController
         }
         if (collision.GetComponent<FireBall>() != null)
         {
-            Hit(5);
+            Hit(10);
+        }
+        if (collision.GetComponent<Axe>() != null)
+        {
+            Hit(10);
+        }
+        if (collision.GetComponent<BossSkill>() != null)
+        {
+            Hit(10);
         }
     }
 
@@ -476,7 +484,7 @@ public class Berserker : PlayerController
         }
         if (collision.collider.GetComponent<Arrow>() != null)
         {
-            Hit(5);
+            Hit(10);
         }
     }
 

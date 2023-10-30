@@ -22,28 +22,28 @@ public class EquimentItem : Item
         switch (equimentItemType)
         {
             case EquimentItemType.Weapon:
-                player.damage += 2;
+                player.damage += 5;
                 break;
             case EquimentItemType.Top:
-                player.maxHp += 2;
+                player.maxHp += 20;
                 break;
             case EquimentItemType.Bottom:
-                player.maxHp += 2;
+                player.maxHp += 20;
                 break;
             case EquimentItemType.Hat:
-                player.maxHp += 1;
+                player.maxHp += 10;
                 break;
             case EquimentItemType.Gloves:
-                player.maxMp += 2;
+                player.maxMp += 20;
                 break;
             case EquimentItemType.Shoes:
-                player.maxMp += 2;
+                player.maxMp += 20;
                 break;
             case EquimentItemType.Ring:
-                player.damage += 1;
+                player.damage += 3;
                 break;
             case EquimentItemType.Earring:
-                player.damage += 1;
+                player.damage += 3;
                 break;
         }
     }

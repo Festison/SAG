@@ -5,20 +5,11 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class Slot : MonoBehaviour,IPointerDownHandler,IPointerUpHandler,IPointerClickHandler
+public class Slot : MonoBehaviour,IPointerDownHandler,IPointerUpHandler
 {
     public Image itemImage;
     public TextMeshProUGUI itemNameText;
     public Item item;
-
-    public void OnPointerClick(PointerEventData eventData)
-    {
-        if(item != null)
-        {
-            item.Use(FindObjectOfType<PlayerController>());
-            SetItem(null);
-        }
-    }
 
     public void OnPointerDown(PointerEventData eventData)
     {

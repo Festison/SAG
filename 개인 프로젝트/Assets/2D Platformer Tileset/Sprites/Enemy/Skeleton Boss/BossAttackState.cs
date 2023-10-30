@@ -24,6 +24,8 @@ public class BossAttackState : StateMachineBehaviour
     // 상태에서 나갈 때
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        GameObject game = Resources.Load<GameObject>("BossSkill");
+        Instantiate(game, monster.transform.position + Vector3.down * 5, monster.transform.rotation);
         monster.atkDelay = monster.atkCooltime;
     }
 }

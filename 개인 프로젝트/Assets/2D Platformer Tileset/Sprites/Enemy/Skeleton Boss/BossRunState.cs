@@ -20,12 +20,12 @@ public class BossRunState : StateMachineBehaviour
         Vector2 tmpEnemyPosition = enemyTransform.transform.position;
         tmpEnemyPosition = new Vector2(tmpEnemyPosition.x, enemyTransform.position.y);
 
-        if (Vector2.Distance(enemyTransform.position, enemy.player.position) > 16)
+        if (Vector2.Distance(enemyTransform.position, enemy.player.position) > 20)
         {
             animator.SetBool("IsFollow", false);
             animator.SetBool("IsBack", true);
         }
-        else if (Vector2.Distance(enemyTransform.position, enemy.player.position) > 1f)
+        else if (Vector2.Distance(enemyTransform.position, enemy.player.position) > 16f)
         {
             enemy.IsBackHome = false;
             enemyTransform.position = Vector2.MoveTowards(enemyTransform.transform.position, enemy.player.transform.position, Time.deltaTime * enemy.speed);

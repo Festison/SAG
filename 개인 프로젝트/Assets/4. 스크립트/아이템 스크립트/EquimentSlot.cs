@@ -27,6 +27,10 @@ public class EquimentSlot : Slot
             {
                 base.SetItem(item);
             }
+            else
+            {
+
+            }
         }
 
      
