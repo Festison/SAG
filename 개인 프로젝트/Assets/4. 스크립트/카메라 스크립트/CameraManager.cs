@@ -58,6 +58,9 @@ public class CameraManager : MonoBehaviour
     // Start 는 Behaviour 의 주기 동안에 한번만 호출된다.
     // Start() 는 Script Instance 로 활성화 된 경우에만 실행되는데, 이는 스크립트가 컴포넌트로 있을 때를 이야기한다. (GameObject 에 추가로 인스턴스가 되는 경우)
 
+    public AudioClip[] audioClips;
+    public int count = 0;
+
     void Start()
     {
         // 카메라 컴포넌트를 가져온다.
@@ -66,6 +69,7 @@ public class CameraManager : MonoBehaviour
         maxBound = bound.bounds.max;
         halfHeight = theCamera.orthographicSize;
         halfWidth = halfHeight * Screen.width / Screen.height;
+        SoundManager.instance.SFXPlay("Village", audioClips[count],true);
     }
 
     void Update()
@@ -82,6 +86,7 @@ public class CameraManager : MonoBehaviour
 
             this.transform.position = new Vector3(clampedX, clampedY, this.transform.position.z);
 
+            
         }
     }
 
@@ -91,5 +96,6 @@ public class CameraManager : MonoBehaviour
         bound = newBound;
         minBound = bound.bounds.min;
         maxBound = bound.bounds.max;
+        SoundManager.instance.SFXPlay("Stage", audioClips[++count],true);
     }
 }

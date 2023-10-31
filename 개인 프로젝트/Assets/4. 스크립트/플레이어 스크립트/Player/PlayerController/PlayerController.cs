@@ -158,20 +158,6 @@ public abstract class PlayerController : MonoBehaviour
         }
     }
 
-    public static PlayerController instance=null;
-
-    public void Awake()
-    {
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(this.gameObject);
-        }
-    }
     public void LevelUp()
     {
         Level++;
@@ -189,10 +175,13 @@ public abstract class PlayerController : MonoBehaviour
         transform.localScale = new Vector3(bLeft ? 1 : -1, 1, 1);
     }
 
+    public AudioClip[] clip;
+
     // 점프 함수
     protected void prefromJump()
     {
         Anime.Play("Jump");
+        SoundManager.instance.SFXPlay("Attack", clip[0]);
 
         rigidbody.velocity = new Vector2(0, 0);
 

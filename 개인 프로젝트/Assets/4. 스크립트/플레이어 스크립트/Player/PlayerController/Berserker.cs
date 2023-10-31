@@ -74,7 +74,7 @@ public class Berserker : PlayerController
             auraBladeCoolTimeImage.fillAmount = 1;
             StartCoroutine(AuraBladeCoolTime());
         }
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Alpha4))
         {
             Anime.Play("Die");
         }
@@ -219,7 +219,7 @@ public class Berserker : PlayerController
 
         // 점프
         if (Input.GetKeyDown(KeyCode.Space))
-        {
+        {          
             if (Anime.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
             {
                 return;
@@ -265,8 +265,11 @@ public class Berserker : PlayerController
         float RandomX = UnityEngine.Random.Range(0, 0.5f);
     }
 
+    
     public override void DefaulAttack(GameObject hitMonster)
     {
+        SoundManager.instance.SFXPlay("Attack", clip[1]);
+
         if (hitMonster.GetComponent<IHitable>() != null)
         {
             hitMonster.transform.GetComponent<IHitable>().Hit(damage);
@@ -308,6 +311,7 @@ public class Berserker : PlayerController
     // 드레인 기술
     public override void LifeStealEnter()
     {
+        SoundManager.instance.SFXPlay("AuraBlade", clip[2]);
         Mp -= 10;
         const int hpRecorvery = 1;
 
@@ -360,11 +364,11 @@ public class Berserker : PlayerController
     // 검기 발사 기술
     public override void AuraBladeEnter()
     {
+        SoundManager.instance.SFXPlay("AuraBlade", clip[3]);
         Mp -= 10;
         GameObject auraBlade = Instantiate(auraBladePrefab, transform.position, Quaternion.identity);
         Vector3 auraBladeDir = transform.localScale.x * this.transform.right;
         auraBlade.GetComponent<AuraBlade>().Fire(auraBladeDir);
-
     }
 
     public GameObject teleportPosition = null;
@@ -379,6 +383,7 @@ public class Berserker : PlayerController
 
         if (IsDie)
         {
+            SoundManager.instance.SFXPlay("AuraBlade", clip[4]);
             Anime.Play("Die");
             gameObject.transform.position = new Vector3(0, 0, 0);
             theCamera.SetBound(targetBound);
