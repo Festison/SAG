@@ -23,7 +23,7 @@ public class LifeSteal : MonoBehaviour
     public void Fire(float damage)
     {
         Damage = damage;
-        TartgetObj = UIManager.UI.CurrentPlayerObj;
+        TartgetObj = GameManager.UI.CurrentPlayerObj;
         TargetDir = TartgetObj.transform.position - this.transform.position;
         this.transform.right = TargetDir;      
     }

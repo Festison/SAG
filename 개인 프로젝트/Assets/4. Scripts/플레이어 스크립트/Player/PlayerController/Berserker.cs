@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class Berserker : PlayerController
 {
@@ -263,6 +264,7 @@ public class Berserker : PlayerController
         Instantiate(BloodPrefab, transform.position, Quaternion.identity);
 
         float RandomX = UnityEngine.Random.Range(0, 0.5f);
+        SoundManager.instance.SFXPlay("Attack", clip[5]);
     }
 
     
@@ -385,9 +387,7 @@ public class Berserker : PlayerController
         {
             SoundManager.instance.SFXPlay("AuraBlade", clip[4]);
             Anime.Play("Die");
-            gameObject.transform.position = new Vector3(0, 0, 0);
-            theCamera.SetBound(targetBound);
-            Hp = maxHp;
+            SceneManager.LoadScene("MainMenuScene");
         }
     }
 

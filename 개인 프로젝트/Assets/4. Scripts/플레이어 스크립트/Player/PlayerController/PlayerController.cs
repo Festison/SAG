@@ -167,6 +167,7 @@ public abstract class PlayerController : MonoBehaviour
         Mp += 20;
         maxExp += 50;
         damage += 2;
+        SoundManager.instance.SFXPlay("LevelUp", clip[6]);
     }
 
     // 좌우 반전 함수
