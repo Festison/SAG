@@ -5,8 +5,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public abstract class PlayerController : MonoBehaviour
+public abstract class PlayerController : MonoBehaviour,IHitable
 {
+    public static PlayerHpUI hpUi = null;
+
+
     [Header("현재 점프한 횟수")]
     public int currentJumpCount = 0;
     protected int JumpCount = 2;                   // 최대 점프 수

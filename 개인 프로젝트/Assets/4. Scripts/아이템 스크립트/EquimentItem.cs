@@ -19,6 +19,7 @@ public class EquimentItem : Item
     public EquimentItemType equimentItemType;
     public override void Equipment(PlayerController player)
     {
+    
         switch (equimentItemType)
         {
             case EquimentItemType.Weapon:

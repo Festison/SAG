@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager UI;
 
+    public SliderBarUITest hpUi;
+    public SliderBarUITest mpUi;
     [Header("키보드및 마우스 이미지")]
     public Image[] UIImage;
     public Sprite[] IdleUIImage;             // 클릭 안할시 이미지

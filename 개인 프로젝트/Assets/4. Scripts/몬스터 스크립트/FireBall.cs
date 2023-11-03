@@ -11,6 +11,7 @@ public class FireBall : MonoBehaviour
 
     void Start()
     {
+        GetComponent<AttackableComponent>().atk = 10;
         player = GameObject.FindGameObjectWithTag("Player").transform;
         sprite = GetComponent<SpriteRenderer>();
         dir = player.position - transform.position;

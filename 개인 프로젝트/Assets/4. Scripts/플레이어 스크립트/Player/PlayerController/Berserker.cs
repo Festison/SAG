@@ -473,9 +473,13 @@ public class Berserker : PlayerController
             Debug.Log("몬스터 공격 맞음");
             Hit(5);
         }
-        if (collision.GetComponent<FireBall>() != null)
+        if (collision.GetComponent<IAttackabe>() != null && collision is CircleCollider2D)
         {
-            Hit(10);
+            if(collision.GetComponent<IAttackabe>() is Monster)
+            {
+
+            }
+            collision.GetComponent<IAttackabe>().Attack(this);
         }
         if (collision.GetComponent<Axe>() != null)
         {
@@ -487,13 +491,27 @@ public class Berserker : PlayerController
         }
     }
 
+    public Item curTriggerItem;
+
+    private void FixedUpdate()
+    {
+        if(curTriggerItem != null)
+        {
+            if ( Input.GetKeyDown(KeyCode.Z))
+            {
+                Debug.Log("아이템 먹음");
+                inven.AddItem(curTriggerItem);
+                curTriggerItem.gameObject.SetActive(false);
+                curTriggerItem = null;
+            }
+        }
+    }
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.GetComponent<Item>() != null && Input.GetKeyDown(KeyCode.Z))
+        if (collision.GetComponent<Item>() != null)
         {
-            Debug.Log("아이템 먹음");
-            inven.AddItem(collision.GetComponent<Item>());
-            collision.gameObject.SetActive(false);
+            curTriggerItem = collision.GetComponent<Item>();
+            
         }
     }
 

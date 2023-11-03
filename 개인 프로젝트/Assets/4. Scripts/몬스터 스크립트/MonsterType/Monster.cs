@@ -3,7 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Monster : MonoBehaviour, IHitable
+
+public interface IAttackabe
+{
+    void Attack(IHitable hitable);
+}
+public class Monster : MonoBehaviour, IHitable, IAttackabe
 {
     [Header("몬스터 UI 셋팅")]
     public Transform m_Canvas_Trans;
@@ -152,6 +157,8 @@ public class Monster : MonoBehaviour, IHitable
         }
     }
 
-    
-
+    void IAttackabe.Attack(IHitable hitable)
+    {
+        throw new System.NotImplementedException();
+    }
 }

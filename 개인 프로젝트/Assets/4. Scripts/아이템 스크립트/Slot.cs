@@ -15,11 +15,23 @@ public class Slot : MonoBehaviour,IPointerDownHandler,IPointerUpHandler
     {
         Debug.Log(gameObject.name + "´Ù¿î");
     }
-    public void OnPointerUp(PointerEventData eventData)
+    public virtual void OnPointerUp(PointerEventData eventData)
     {
         Slot swapTargetSlot = eventData.pointerEnter.gameObject.GetComponent<Slot>();
         if (swapTargetSlot != null)
         {
+            if(swapTargetSlot is EquimentSlot)
+            {
+                if(item is EquimentItem)
+                {
+                    if(((EquimentSlot)swapTargetSlot).equimentSlotType != ((EquimentItem)item).equimentItemType)
+                    {
+                        return;
+                    }
+                    else
+                        item.Equipment(FindObjectOfType<PlayerController>());
+                }
+            }
             Item tempItem = swapTargetSlot.item;
             swapTargetSlot.SetItem(item);
             SetItem(tempItem);

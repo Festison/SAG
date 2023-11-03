@@ -15,7 +15,7 @@ public class ChestOpen : MonoBehaviour
     private void Start()
     {
         chestAnimation = GetComponent<Animator>();
-        randomItem = Random.Range(0, 5);
+        randomItem = Random.Range(0, 12);
     }
 
 

@@ -12,28 +12,17 @@ public class EquimentSlot : Slot
     public EquimentItemType equimentSlotType;
     public EquimentItem equimentItem;
 
-    private void Update()
+    public override void OnPointerUp(PointerEventData eventData)
     {
-        
-    }
-
-    public override void SetItem(Item item)
-    {
-
-        if (item is EquimentItem)
-        {
-            item.Equipment(FindObjectOfType<PlayerController>());
-            if(equimentSlotType == ((EquimentItem)item).equimentItemType)
-            {
-                base.SetItem(item);
-            }
-            else
-            {
-
-            }
+        Slot swapTargetSlot = eventData.pointerEnter.gameObject.GetComponent<Slot>();
+        if (swapTargetSlot != null)
+        { 
+            Item tempItem = swapTargetSlot.item;
+            swapTargetSlot.SetItem(item);
+            //item.Equipment(FindObjectOfType<PlayerController>());
+            SetItem(tempItem);
         }
-
-     
+        Debug.Log(gameObject.name + "¾÷");
     }
 }
 
