@@ -331,13 +331,6 @@ public class Berserker : PlayerController
 
     }
 
-    // 레이캐스트 확인
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, 5f);
-    }
-
     // 돌진 기술
     public override void Rush(GameObject hitMonster)
     {
@@ -355,7 +348,6 @@ public class Berserker : PlayerController
         rush.transform.localScale = new Vector3(-1 * transform.localScale.x, 1, 1);
         rush.transform.SetParent(this.transform);
         rush.transform.localPosition = new Vector3(-1.37f, 0.179f, 1);
-
     }
 
     public override void RushExit()

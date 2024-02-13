@@ -42,6 +42,8 @@ public class Monster : MonoBehaviour, IHitable, IAttackabe
 
     private Berserker berserker;
 
+    private System.Action OnLastingFunc;
+
     public bool IsBackHome
     {
         get
@@ -105,9 +107,10 @@ public class Monster : MonoBehaviour, IHitable, IAttackabe
 
     void Update()
     {
-        AttackCoolTime();
-        Flip();
-        HpLerp();
+        OnLastingFunc += AttackCoolTime;
+        OnLastingFunc += Flip;
+        OnLastingFunc += HpLerp;
+        OnLastingFunc();
     }
 
     public void HpLerp()

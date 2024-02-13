@@ -5,10 +5,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public abstract class PlayerController : MonoBehaviour,IHitable
+public abstract class PlayerController : MonoBehaviour, IHitable
 {
     public static PlayerHpUI hpUi = null;
-
 
     [Header("현재 점프한 횟수")]
     public int currentJumpCount = 0;

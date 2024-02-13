@@ -18,6 +18,7 @@ public class Slot : MonoBehaviour,IPointerDownHandler,IPointerUpHandler
     public virtual void OnPointerUp(PointerEventData eventData)
     {
         Slot swapTargetSlot = eventData.pointerEnter.gameObject.GetComponent<Slot>();
+
         if (swapTargetSlot != null)
         {
             if(swapTargetSlot is EquimentSlot)
@@ -36,7 +37,6 @@ public class Slot : MonoBehaviour,IPointerDownHandler,IPointerUpHandler
             swapTargetSlot.SetItem(item);
             SetItem(tempItem);
         }
-        Debug.Log(gameObject.name + "¾÷");
     }
 
     public virtual void SetItem(Item item)
